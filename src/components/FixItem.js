@@ -7,15 +7,34 @@ const heartStyle = {
   cursor: "pointer",
 };
 
-export default function FixItem({ isFavorite, isFixed, feature }) {
+export default function FixItem({
+  isFixed,
+  feature,
+  toggleFavorite,
+  favorites,
+  id,
+}) {
+  function handleClick() {
+    toggleFavorite(id);
+  }
+  const isFavorite = favorites.includes(id);
+
   return (
     <Wrapper>
       <Info>
         <FavoriteWrapper>
           {isFavorite ? (
-            <MdOutlineFavorite size="30" style={heartStyle} />
+            <MdOutlineFavorite
+              onClick={handleClick}
+              size="30"
+              style={heartStyle}
+            />
           ) : (
-            <MdOutlineFavoriteBorder size="30" style={heartStyle} />
+            <MdOutlineFavoriteBorder
+              onClick={handleClick}
+              size="30"
+              style={heartStyle}
+            />
           )}
         </FavoriteWrapper>
         <FixTitel>{feature}</FixTitel>

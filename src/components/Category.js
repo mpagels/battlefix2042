@@ -1,14 +1,19 @@
 import styled from "styled-components/macro";
 import FixItem from "./FixItem";
 
-export default function Category({ label, data }) {
+export default function Category({ label, data, toggleFavorite, favorites }) {
   return (
     <Wrapper>
       <Header>{label}</Header>
       <Line />
       <FixList>
         {data.map((feature) => (
-          <FixItem key={feature.id} {...feature} />
+          <FixItem
+            key={feature.id}
+            {...feature}
+            toggleFavorite={toggleFavorite}
+            favorites={favorites}
+          />
         ))}
       </FixList>
     </Wrapper>

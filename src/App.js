@@ -1,57 +1,23 @@
 import { useState } from "react";
 import styled from "styled-components/macro";
 import Category from "./components/Category";
+import data from "./assets/data.json";
+import { nanoid } from "nanoid";
 
-const initialData = [
-  {
-    id: "1",
-    feature: "No single-player story/campaign mode",
-    isFavorite: false,
-    isFixed: true,
-    category: "Core Features",
-  },
-  {
-    id: "2",
-    feature: "No standard server browser",
-    isFavorite: false,
-    isFixed: false,
-    category: "Core Features",
-  },
-  {
-    id: "3",
-    feature:
-      "Fewer standardized game modes (Can't even play TDM or smaller scale modes without relying on community servers. Really?)",
-    isFavorite: false,
-    isFixed: false,
-    category: "Core Features",
-  },
-  {
-    id: "4",
-    feature: "No standard hardcore mode",
-    isFavorite: false,
-    isFixed: false,
-    category: "Core Features",
-  },
-  {
-    id: "5",
-    feature:
-      "No persistent lobbies (seriously why do I have to matchmake after EVERY round?)",
-    isFavorite: false,
-    isFixed: false,
-    category: "Core Features",
-  },
-  {
-    id: "6",
-    feature:
-      "Fewer guns (even including all the portal guns, BF4 still had more at launch)",
-    isFavorite: false,
-    isFixed: false,
-    category: "Infantry Gameplay",
-  },
-];
+const features = data.map((data) => {
+  return { ...data, id: nanoid() };
+});
 
 function App() {
-  const [coreFeatures, setCoreFeatures] = useState(initialData);
+  const [coreFeatures, setCoreFeatures] = useState(features);
+  const [favorites, setFavories] = useState([]);
+  function toggleFavorite(id) {
+    if (favorites.includes(id)) {
+      setFavories(favorites.filter((favorite) => favorite !== id));
+    } else {
+      setFavories([...favorites, id]);
+    }
+  }
 
   const core = coreFeatures.filter(
     (feature) => feature.category === "Core Features"
@@ -63,8 +29,18 @@ function App() {
     <div>
       <AppTitle>BATTLEFIX 2042</AppTitle>
       <SubTitle>Is Battlefield 2042 fixed for me?</SubTitle>
-      <Category label="Core Features" data={core} />
-      <Category label="Infantry Gameplay" data={infantry} />
+      <Category
+        label="Core Features"
+        data={core}
+        toggleFavorite={toggleFavorite}
+        favorites={favorites}
+      />
+      <Category
+        label="Infantry Gameplay"
+        data={infantry}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+      />
     </div>
   );
 }

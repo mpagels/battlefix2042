@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "feature": "No single-player story/campaign mode",
+    "isFavorite": false,
+    "isFixed": true,
+    "category": "Core Features"
+  },
+  {
+    "id": "2",
+    "feature": "No standard server browser",
+    "isFavorite": false,
+    "isFixed": false,
+    "category": "Core Features"
+  },
+  {
+    "id": "3",
+    "feature": "Fewer standardized game modes (Can't even play TDM or smaller scale modes without relying on community servers. Really?)",
+    "isFavorite": false,
+    "isFixed": false,
+    "category": "Core Features"
+  },
+  {
+    "id": "4",
+    "feature": "No standard hardcore mode",
+    "isFavorite": false,
+    "isFixed": false,
+    "category": "Core Features"
+  },
+  {
+    "id": "5",
+    "feature": "No persistent lobbies (seriously why do I have to matchmake after EVERY round?)",
+    "isFavorite": false,
+    "isFixed": false,
+    "category": "Core Features"
+  },
+  {
+    "id": "6",
+    "feature": "Fewer guns (even including all the portal guns, BF4 still had more at launch)",
+    "isFavorite": false,
+    "isFixed": false,
+    "category": "Infantry Gameplay"
+  }
+]
