@@ -3,14 +3,21 @@ import styled from "styled-components/macro";
 import Category from "./components/Category";
 import data from "./assets/data.json";
 import { nanoid } from "nanoid";
+import FavoriteSwitch from "./components/FavoriteSwitch";
 
-const features = data.map((data) => {
+const fixes = data.map((data) => {
   return { ...data, id: nanoid() };
 });
 
 function App() {
-  const [coreFeatures, setCoreFeatures] = useState(features);
   const [favorites, setFavories] = useState([]);
+
+  const [favoriteIsChecked, setFavoriteIsChecked] = useState(false);
+
+  const handleChange = (event) => {
+    setFavoriteIsChecked(event.target.checked);
+  };
+
   function toggleFavorite(id) {
     if (favorites.includes(id)) {
       setFavories(favorites.filter((favorite) => favorite !== id));
@@ -19,16 +26,19 @@ function App() {
     }
   }
 
-  const core = coreFeatures.filter(
-    (feature) => feature.category === "Core Features"
-  );
-  const infantry = coreFeatures.filter(
-    (feature) => feature.category === "Infantry Gameplay"
-  );
+  const core = get("Core Features");
+  const infantry = get("Infantry Gameplay");
   return (
     <div>
       <AppTitle>BATTLEFIX 2042</AppTitle>
       <SubTitle>Is Battlefield 2042 fixed for me?</SubTitle>
+      <SwitchWrapper>
+        <FavoriteSwitch
+          favoriteIsChecked={favoriteIsChecked}
+          handleChange={handleChange}
+          label={"Show favorites only"}
+        />
+      </SwitchWrapper>
       <Category
         label="Core Features"
         data={core}
@@ -43,6 +53,18 @@ function App() {
       />
     </div>
   );
+
+  function get(fix) {
+    return fixes
+      .filter((feature) => feature.category === fix)
+      .filter((feature) => {
+        if (favoriteIsChecked) {
+          return favorites.includes(feature.id);
+        } else {
+          return true;
+        }
+      });
+  }
 }
 
 export default App;
@@ -61,4 +83,9 @@ const SubTitle = styled.h2`
   font-size: 0.8em;
   color: black;
   background-color: #26ffdf;
+`;
+
+const SwitchWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
