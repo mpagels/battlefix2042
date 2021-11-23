@@ -1,18 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 import Category from "./components/Category";
-import data from "./assets/data.json";
-import { nanoid } from "nanoid";
 import FavoriteSwitch from "./components/FavoriteSwitch";
+import { Adsense } from "@ctrl/react-adsense";
 
-const fixes = data.map((data) => {
-  return { ...data, id: nanoid() };
-});
+const backendUrl = process.env.REACT_APP_BACKEND;
 
 function App() {
-  const [favorites, setFavories] = useState([]);
+  const [favorites, setFavories] = useState(
+    JSON.parse(localStorage.getItem("favorites")) || []
+  );
+  const [fixes, setFixes] = useState([]);
+  const [favoriteIsChecked, setFavoriteIsChecked] = useState(
+    JSON.parse(localStorage.getItem("favoriteIsChecked")) || false
+  );
 
-  const [favoriteIsChecked, setFavoriteIsChecked] = useState(false);
+  useEffect(() => {
+    localStorage.setItem(
+      "favoriteIsChecked",
+      JSON.stringify(favoriteIsChecked)
+    );
+  }, [favoriteIsChecked]);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    if (favorites.length === 0) {
+      setFavoriteIsChecked(false);
+    }
+  }, [favorites]);
+
+  useEffect(() => {
+    fetch(`${backendUrl}/fixes`)
+      .then((res) => res.json())
+      .then((data) => setFixes(data));
+  }, []);
 
   const handleChange = (event) => {
     setFavoriteIsChecked(event.target.checked);
@@ -26,8 +47,8 @@ function App() {
     }
   }
 
-  const core = get("Core Features");
-  const infantry = get("Infantry Gameplay");
+  const core = get("CoreFeature");
+  const infantry = get("InfantryGameplay");
   return (
     <div>
       <AppTitle>BATTLEFIX 2042</AppTitle>
@@ -36,7 +57,7 @@ function App() {
         <FavoriteSwitch
           favoriteIsChecked={favoriteIsChecked}
           handleChange={handleChange}
-          label={"Show favorites only"}
+          label={`Show ${favorites.length} favorites only`}
         />
       </SwitchWrapper>
       <Category
@@ -44,6 +65,12 @@ function App() {
         data={core}
         toggleFavorite={toggleFavorite}
         favorites={favorites}
+      />
+      <Adsense
+        client="ca-pub-6025970017934652"
+        style={{ display: "block" }}
+        layout="in-article"
+        format="fluid"
       />
       <Category
         label="Infantry Gameplay"
@@ -58,7 +85,7 @@ function App() {
     return fixes
       .filter((feature) => feature.category === fix)
       .filter((feature) => {
-        if (favoriteIsChecked) {
+        if (favoriteIsChecked && favorites.length > 0) {
           return favorites.includes(feature.id);
         } else {
           return true;

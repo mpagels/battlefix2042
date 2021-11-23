@@ -13,6 +13,7 @@ export default function FixItem({
   toggleFavorite,
   favorites,
   id,
+  patchnote,
 }) {
   function handleClick() {
     toggleFavorite(id);
@@ -41,8 +42,12 @@ export default function FixItem({
       </Info>
       {isFixed ? (
         <Additional>
-          <Fixed>was fixed on 11.17.2021</Fixed>
-          <PatchNotes href="">
+          <Fixed>was fixed on {patchnote.release}</Fixed>
+          <PatchNotes
+            href={patchnote.patchUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
             <HiExternalLink size="15" />
             patchnotes
           </PatchNotes>
