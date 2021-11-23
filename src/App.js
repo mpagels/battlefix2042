@@ -5,6 +5,8 @@ import FavoriteSwitch from "./components/FavoriteSwitch";
 import { Adsense } from "@ctrl/react-adsense";
 
 const backendUrl = process.env.REACT_APP_BACKEND;
+const publisherID = process.env.REACT_APP_PUBLISHER_ID;
+const slot = process.env.REACT_APP_SLOT;
 
 function App() {
   const [favorites, setFavories] = useState(
@@ -74,7 +76,8 @@ function App() {
         favorites={favorites}
       />
       <Adsense
-        client="ca-pub-6025970017934652"
+        client={publisherID}
+        slot={slot}
         style={{ display: "block" }}
         layout="in-article"
         format="fluid"
