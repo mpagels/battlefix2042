@@ -30,7 +30,7 @@ function App() {
   }, [favorites]);
 
   useEffect(() => {
-    fetch(`${backendUrl}/fixes`)
+    fetch(`${backendUrl}/fixes?_limit=-1`)
       .then((res) => res.json())
       .then((data) => setFixes(data));
   }, []);
