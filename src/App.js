@@ -49,6 +49,13 @@ function App() {
 
   const core = get("CoreFeature");
   const infantry = get("InfantryGameplay");
+  const vehicles = get("Vehicles");
+  const scoring = get("ScoringSystem");
+  const teamwork = get("SquadAndTeamwork");
+  const maps = get("Maps");
+  const quality = get("UiAndQualityOfLife");
+  const audio = get("Audio");
+
   return (
     <div>
       <AppTitle>BATTLEFIX 2042</AppTitle>
@@ -75,6 +82,42 @@ function App() {
       <Category
         label="Infantry Gameplay"
         data={infantry}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+      />
+      <Category
+        label="Vehicles"
+        data={vehicles}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+      />
+      <Category
+        label="Scoring System"
+        data={scoring}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+      />
+      <Category
+        label="Squad and Teamwork System"
+        data={teamwork}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+      />
+      <Category
+        label="Maps"
+        data={maps}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+      />
+      <Category
+        label="UI and Quality of life"
+        data={quality}
+        favorites={favorites}
+        toggleFavorite={toggleFavorite}
+      />
+      <Category
+        label="Audio"
+        data={audio}
         favorites={favorites}
         toggleFavorite={toggleFavorite}
       />
