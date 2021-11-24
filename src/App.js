@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 import Category from "./components/Category";
 import FavoriteSwitch from "./components/FavoriteSwitch";
-import { Adsense } from "@ctrl/react-adsense";
 
 const backendUrl = process.env.REACT_APP_BACKEND;
 const publisherID = process.env.REACT_APP_PUBLISHER_ID;
@@ -74,13 +73,6 @@ function App() {
         data={core}
         toggleFavorite={toggleFavorite}
         favorites={favorites}
-      />
-      <Adsense
-        client={publisherID}
-        slot={slot}
-        style={{ display: "block" }}
-        layout="in-article"
-        format="fluid"
       />
       <Category
         label="Infantry Gameplay"
