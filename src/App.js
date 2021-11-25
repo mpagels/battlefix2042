@@ -4,8 +4,6 @@ import Category from "./components/Category";
 import FavoriteSwitch from "./components/FavoriteSwitch";
 
 const backendUrl = process.env.REACT_APP_BACKEND;
-const publisherID = process.env.REACT_APP_PUBLISHER_ID;
-const slot = process.env.REACT_APP_SLOT;
 
 function App() {
   const [favorites, setFavories] = useState(
