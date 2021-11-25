@@ -39,8 +39,8 @@ export default function About() {
         </p>
 
         <p>
-          <Mail href="mailto:battlefix2042@gamil.com">
-            battlefix2042@gamil.com
+          <Mail href="mailto:battlefix2042@gmail.com">
+            battlefix2042@gmail.com
           </Mail>
         </p>
       </Section>
