@@ -3,11 +3,16 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import GlobalStyles from "./GlobalStyles";
-
+import { BrowserRouter as Router } from "react-router-dom";
+import { FavoriteContextProvider } from "./contexts/FavoriteContext";
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyles />
-    <App />
+    <Router>
+      <FavoriteContextProvider>
+        <GlobalStyles />
+        <App />
+      </FavoriteContextProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById("root")
 );
