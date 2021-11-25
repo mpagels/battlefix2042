@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 import Category from "./components/Category";
 import FavoriteSwitch from "./components/FavoriteSwitch";
+import { SiAboutdotme } from "react-icons/si";
 
 const backendUrl = process.env.REACT_APP_BACKEND;
 
@@ -60,6 +61,7 @@ function App() {
       <AppTitle>BATTLEFIX 2042</AppTitle>
       <SubTitle>Is Battlefield 2042 fixed for me?</SubTitle>
       <SwitchWrapper>
+        <SiAboutdotme size="30" style={{ color: "#26ffdf" }} />
         <FavoriteSwitch
           favoriteIsChecked={favoriteIsChecked}
           handleChange={handleChange}
@@ -150,5 +152,7 @@ const SubTitle = styled.h2`
 
 const SwitchWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  padding: 0 0 0 20px;
+  align-items: center;
+  justify-content: space-between;
 `;
