@@ -58,7 +58,7 @@ export default function About() {
         <p>Check it here: </p>
         <p>
           <Mail
-            href="https://plausible.battlefix.net"
+            href="https://plausible.battlefix.net/battlefix2042.vercel.app"
             target="_blank"
             rel="noreferrer"
           >
