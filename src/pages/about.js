@@ -95,7 +95,7 @@ const Header = styled.header`
 const Mail = styled.a`
   background-color: #26ffdf;
   color: black;
-  padding: 2px;
+  padding: 2px 5px;
   text-decoration: none;
 `;
 
