@@ -6,7 +6,17 @@ export default function About() {
   return (
     <Wrapper>
       <Section>
-        <h2>I'm Martin. 👋</h2>
+        <h2>
+          I'm{" "}
+          <MyLink
+            href="https://github.com/mpagels"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <GitHub>Martin.</GitHub>
+          </MyLink>
+          👋
+        </h2>
         <h3>Gamer & software developer.</h3>
 
         <p>
@@ -70,6 +80,12 @@ export default function About() {
   );
 }
 
+const GitHub = styled.span`
+  background-color: #26ffdf;
+  color: black;
+  padding: 5px;
+`;
+
 const Header = styled.header`
   display: flex;
   align-items: center;
@@ -80,6 +96,11 @@ const Mail = styled.a`
   background-color: #26ffdf;
   color: black;
   padding: 2px;
+  text-decoration: none;
+`;
+
+const MyLink = styled.a`
+  text-decoration: none;
 `;
 
 const Section = styled.section`
