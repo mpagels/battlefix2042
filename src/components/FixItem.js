@@ -22,39 +22,41 @@ export default function FixItem({
 
   return (
     <Wrapper>
-      <Info>
-        <FavoriteWrapper>
-          {isFavorite ? (
-            <MdOutlineFavorite
-              onClick={handleClick}
-              size="30"
-              style={heartStyle}
-            />
-          ) : (
-            <MdOutlineFavoriteBorder
-              onClick={handleClick}
-              size="30"
-              style={heartStyle}
-            />
-          )}
-        </FavoriteWrapper>
-        <FixTitel>{feature}</FixTitel>
-      </Info>
-      {isFixed ? (
-        <Additional>
-          <Fixed>was fixed on {patchnote.release}</Fixed>
-          <PatchNotes
-            href={patchnote.patchUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <HiExternalLink size="15" />
-            patchnotes
-          </PatchNotes>
-        </Additional>
-      ) : (
-        ""
-      )}
+      <FavoriteWrapper>
+        {isFavorite ? (
+          <MdOutlineFavorite
+            onClick={handleClick}
+            size="30"
+            style={heartStyle}
+          />
+        ) : (
+          <MdOutlineFavoriteBorder
+            onClick={handleClick}
+            size="30"
+            style={heartStyle}
+          />
+        )}
+      </FavoriteWrapper>
+      <Content>
+        <Info>
+          <FixTitel>{feature}</FixTitel>
+        </Info>
+        {isFixed ? (
+          <Additional>
+            <Fixed>fixed on {patchnote.release}</Fixed>
+            <PatchNotes
+              href={patchnote.patchUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <HiExternalLink size="15" />
+              patchnotes
+            </PatchNotes>
+          </Additional>
+        ) : (
+          ""
+        )}
+      </Content>
     </Wrapper>
   );
 }
@@ -62,7 +64,13 @@ export default function FixItem({
 const Additional = styled.div`
   display: flex;
   align-items: center;
-  margin: 1px 40px;
+  margin: 2px 10px;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const FavoriteWrapper = styled.div`
@@ -98,4 +106,6 @@ const PatchNotes = styled.a`
 const Wrapper = styled.li`
   font-family: Roboto;
   margin: 10px 0;
+  display: flex;
+  align-items: center;
 `;

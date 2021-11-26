@@ -25,9 +25,6 @@ export function FavoriteContextProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
-    if (favorites.length === 0) {
-      setFavoriteIsChecked(false);
-    }
   }, [favorites]);
 
   useEffect(() => {
@@ -43,10 +40,18 @@ export function FavoriteContextProvider({ children }) {
   function toggleFavorite(id) {
     if (favorites.includes(id)) {
       setFavories(favorites.filter((favorite) => favorite !== id));
+      if (favorites.length === 1) {
+        setFavoriteIsChecked(false);
+      }
     } else {
       setFavories([...favorites, id]);
     }
   }
+
+  const isBattlefieldFixed = favorites
+    .map((favorite) => fixes.filter((fix) => fix.id === favorite))
+    .map((fix) => fix[0])
+    .every((fix) => fix?.isFixed);
 
   const core = get("CoreFeature");
   const infantry = get("InfantryGameplay");
@@ -72,6 +77,7 @@ export function FavoriteContextProvider({ children }) {
         maps,
         quality,
         audio,
+        isBattlefieldFixed,
       }}
     >
       {children}
@@ -105,6 +111,7 @@ export function useFavorites() {
     maps,
     quality,
     audio,
+    isBattlefieldFixed,
   } = useContext(FavoriteContext);
   return {
     favorites,
@@ -119,5 +126,6 @@ export function useFavorites() {
     maps,
     quality,
     audio,
+    isBattlefieldFixed,
   };
 }
